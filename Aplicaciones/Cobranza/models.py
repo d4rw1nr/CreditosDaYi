@@ -1,6 +1,6 @@
 from django.db import models
-from Ventas.models import Ventas
-from Contabilidad.models import Transacciones
+from Aplicaciones.Ventas.models import Ventas
+from Aplicaciones.Contabilidad.models import Transacciones
 
 # Create your models here.
 

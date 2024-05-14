@@ -1,13 +1,13 @@
 from django.db import models
-from Contabilidad.models import Transacciones
-from Inventario.models import Productos
+from Aplicaciones.Contabilidad.models import Transacciones
+from Aplicaciones.Inventario.models import Productos
 
 # Create your models here.
 
 class Clientes(models.Model):
     nombre = models.CharField(max_length=100, verbose_name="Nombre Cliente")
     direccion = models.CharField(max_length=100, verbose_name="Direccion del Cliente")
-    telefono = models.IntegerField(max_length=10, verbose_name="Telefono de contacto del cliente")
+    telefono = models.IntegerField(verbose_name="Telefono de contacto del cliente")
 
     def __str__(self) -> str:
         return f"{self.nombre}"
@@ -31,8 +31,8 @@ class Ventas(models.Model):
 
 
 class VentasDetalle(models.Model):
-    venta = models.ForeignKey(Ventas, related_name="Detalles de la Venta", on_delete=models.CASCADE)
-    producto = models.ForeignKey(Productos, related_name="Detalles de la Venta", on_delete=models.CASCADE)
+    venta = models.ForeignKey(Ventas, related_name="DetallesVenta", on_delete=models.CASCADE)
+    producto = models.ForeignKey(Productos, related_name="DetallesVenta", on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField()
     precio_venta = models.PositiveIntegerField()
 

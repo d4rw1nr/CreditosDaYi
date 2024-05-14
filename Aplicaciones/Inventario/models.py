@@ -1,5 +1,5 @@
 from django.db import models
-from Contabilidad.models import Transacciones
+from Aplicaciones.Contabilidad.models import Transacciones
 from simple_history.models import HistoricalRecords
 
 # Create your models here.
@@ -7,7 +7,7 @@ from simple_history.models import HistoricalRecords
 class Proveedores(models.Model):
     nombre = models.CharField(max_length=100, verbose_name="Nombre del proveedor")
     direccion = models.CharField(max_length=100, verbose_name="Dirección del proveedor")
-    telefono = models.IntegerField(max_length=10, verbose_name="Telefono de contacto")
+    telefono = models.IntegerField(verbose_name="Telefono de contacto")
     email = models.EmailField(verbose_name="Correo electrónico del proveedor")
     nombre_contacto = models.CharField(max_length=100, verbose_name="Nombre del contacto")
 
@@ -40,8 +40,8 @@ class Productos(models.Model):
 
 
 class ComprasDetalle(models.Model):
-    compra = models.ForeignKey(Compras, related_name="Detalle de la compra", on_delete=models.CASCADE)
-    producto = models.ForeignKey(Productos, related_name="Detalle de la compra", on_delete=models.CASCADE)
+    compra = models.ForeignKey(Compras, related_name="DetalleCompra", on_delete=models.CASCADE)
+    producto = models.ForeignKey(Productos, related_name="DetalleCompra", on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField()
     precio_compra = models.PositiveIntegerField()
 

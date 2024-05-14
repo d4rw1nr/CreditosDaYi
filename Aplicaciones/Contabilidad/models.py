@@ -4,7 +4,7 @@ from django.db import models
 
 class Cuentas(models.Model):
     nombre = models.CharField(max_length=100)
-    cuenta = models.PositiveIntegerField(max_length=8)
+    cuenta = models.PositiveIntegerField()
     saldo = models.IntegerField()
 
     def __str__(self) -> str:
@@ -22,8 +22,8 @@ class Transacciones(models.Model):
 
 
 class AsientosContables(models.Model):
-    transaccion = models.ForeignKey(Transacciones, related_name="Asientos Contables", on_delete=models.CASCADE)
-    cuenta = models.ForeignKey(Cuentas, related_name="Asientos Contables", on_delete=models.CASCADE)
+    transaccion = models.ForeignKey(Transacciones, related_name="AsientosContables", on_delete=models.CASCADE)
+    cuenta = models.ForeignKey(Cuentas, related_name="AsientosContables", on_delete=models.CASCADE)
     debe = models.IntegerField()
     haber = models.IntegerField()
     
