@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'Aplicaciones.Inventario',
     'Aplicaciones.Personal',
     'Aplicaciones.Ventas',
+    'Aplicaciones.common',
 ]
 
 MIDDLEWARE = [
