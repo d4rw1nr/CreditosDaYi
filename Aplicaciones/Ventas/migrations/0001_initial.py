@@ -14,18 +14,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Caja',
-            fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('fecha', models.DateTimeField()),
-                ('monto_apertura', models.IntegerField()),
-                ('monto_cierre', models.IntegerField()),
-                ('monto_transaccion', models.IntegerField()),
-                ('balance', models.IntegerField()),
-                ('estado', models.CharField(choices=[('abierto', 'Abierto'), ('cerrado', 'Cerrado')], max_length=10)),
-            ],
-        ),
-        migrations.CreateModel(
             name='Clientes',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),

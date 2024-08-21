@@ -20,7 +20,7 @@ class Productos(models.Model):
     detalle = models.CharField(max_length=100)
     precio = models.PositiveIntegerField()
     cantidad = models.PositiveIntegerField()
-    id_proveedor = models.ForeignKey(Proveedores, related_name="Producto", on_delete=models.CASCADE)
+    proveedor = models.ForeignKey(Proveedores, related_name="Producto", on_delete=models.CASCADE)
     history = HistoricalRecords(verbose_name="Historico de Productos")
 
     def __str__(self) -> str:
