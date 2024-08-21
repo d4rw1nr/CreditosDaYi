@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Clientes, Ventas, VentasDetalle, Caja
-from .serializers import ClientesSerializer, VentasSerializer, VentasDetalleSerializer, CajaSerializer
+from .models import Clientes, Ventas, VentasDetalle
+from .serializers import ClientesSerializer, VentasSerializer, VentasDetalleSerializer
 
 # Create your views here.
 
@@ -16,7 +16,3 @@ class VentasViewSet(viewsets.ModelViewSet):
 class VentasDetalleViewSet(viewsets.ModelViewSet):
     queryset = VentasDetalle.objects.all()
     serializer_class = VentasDetalleSerializer
-
-class CajaViewSet(viewsets.ModelViewSet):
-    queryset = Caja.objects.all()
-    serializer_class = CajaSerializer

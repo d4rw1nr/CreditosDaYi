@@ -6,7 +6,6 @@ router = DefaultRouter()
 router.register(r'clientes', ClientessViewSet)
 router.register(r'ventas', VentasViewSet)
 router.register(r'ventasdetalle', VentasDetalleViewSet)
-router.register(r'caja', CajaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

@@ -1,5 +1,4 @@
 from django.db import models
-from Aplicaciones.Contabilidad.models import Transacciones
 from simple_history.models import HistoricalRecords
 
 # Create your models here.

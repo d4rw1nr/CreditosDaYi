@@ -1,5 +1,4 @@
 from django.db import models
-from Aplicaciones.Contabilidad.models import Transacciones
 from Aplicaciones.Inventario.models import Productos
 
 # Create your models here.
@@ -20,7 +19,6 @@ class Ventas(models.Model):
         ('credito', 'Credito')
     ]
 
-    transaccion = models.ForeignKey(Transacciones, related_name="Ventas", on_delete=models.CASCADE)
     cliente = models.ForeignKey(Clientes, related_name="Ventas", on_delete=models.CASCADE)
     fecha_venta = models.DateTimeField()
     total_pago = models.PositiveIntegerField()
@@ -35,18 +33,7 @@ class VentasDetalle(models.Model):
     producto = models.ForeignKey(Productos, related_name="DetallesVenta", on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField()
     precio_venta = models.PositiveIntegerField()
+    subtotal = models.PositiveIntegerField()
 
     def __str__(self) -> str:
-        return f"Venta de {self.cantidad} {self.producto.nombre}"
-
-
-class Caja(models.Model):
-    fecha = models.DateTimeField()
-    monto_apertura = models.IntegerField()
-    monto_cierre = models.IntegerField()
-    monto_transaccion = models.IntegerField()
-    balance = models.IntegerField()
-    estado = models.CharField(max_length=10, choices=[('abierto', 'Abierto'), ('cerrado', 'Cerrado')])
-
-    def __str__(self) -> str:
-        return f"Caja {self.fecha} - Estado: {self.estado}"
+        return f"Venta de {self.cantidad} {self.producto.nombre} s"
