@@ -13,15 +13,6 @@ function Menu() {
         <li>
           <Link to="/ventas">Ventas</Link>
         </li>
-        <li>
-          <Link to="/cobranza">Cobranza</Link>
-        </li>
-        <li>
-          <Link to="/contabilidad">Contabilidad</Link>
-        </li>
-        <li>
-          <Link to="/personal">Personal</Link>
-        </li>
       </ul>
     </div>
   );
