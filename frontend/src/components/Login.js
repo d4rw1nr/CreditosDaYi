@@ -16,7 +16,7 @@ function Login() {
         password
       });
       localStorage.setItem('token', response.data.access);
-      navigate('/menu');
+      navigate('/home');
     } catch (error) {
       console.error('Error logging in', error);
       alert('Invalid credentials, please try again.');
