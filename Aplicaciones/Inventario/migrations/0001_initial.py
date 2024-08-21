@@ -10,11 +10,6 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-        ('Contabilidad', '0001_initial'),
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-    ]
-
     operations = [
         migrations.CreateModel(
             name='Productos',
@@ -46,8 +41,6 @@ class Migration(migrations.Migration):
                 ('fecha_compra', models.DateField()),
                 ('costo_total', models.PositiveIntegerField()),
                 ('pagada', models.BooleanField()),
-                ('transaccion', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='Compras', to='Contabilidad.transacciones')),
-                ('proveedor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='Compras', to='Inventario.proveedores')),
             ],
         ),
         migrations.CreateModel(

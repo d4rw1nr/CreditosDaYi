@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('Contabilidad', '0001_initial'),
         ('Inventario', '0001_initial'),
     ]
 
@@ -43,7 +42,6 @@ class Migration(migrations.Migration):
                 ('total_pago', models.PositiveIntegerField()),
                 ('forma_pago', models.CharField(choices=[('efectivo', 'Efectivo'), ('transferencia', 'Transferencia'), ('credito', 'Credito')], max_length=15)),
                 ('cliente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='Ventas', to='Ventas.clientes')),
-                ('transaccion', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='Ventas', to='Contabilidad.transacciones')),
             ],
         ),
         migrations.CreateModel(
