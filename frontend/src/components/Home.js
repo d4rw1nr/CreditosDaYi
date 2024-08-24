@@ -1,26 +1,41 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <h1>Creditos DaYi</h1>
-      <div style={{ marginTop: '20px' }}>
-        <button
-          style={{ marginRight: '10px', padding: '10px 20px', fontSize: '16px' }}
-          onClick={() => navigate('/ventas')}
-        >
-          Registrar Nueva Venta
+    <div class="container-fluid text-center" width="100%">
+      <div class="row align-items-center">
+
+        <div class="col">
+        <br></br><br></br><br></br>
+        <h1>CREDITOS DAYI</h1>
+        <br></br><br></br>
+        <img
+        src="logo.webp"
+        alt="Logo Creditos DaYi"
+        style={{ maxWidth: '50%', height: 'auto' }}
+        />
+        </div>
+        
+        <div class="col">
+        <div class="d-grid gap-2 col-8 mx-auto">
+        <button class="btn btn-primary btn-lg" type="button" onClick={() => navigate('/ventas')}>
+          Ventas
         </button>
-        <button
-          style={{ padding: '10px 20px', fontSize: '16px' }}
-          onClick={() => navigate('/inventario')}
-        >
-          Revisión del Stock
+        <br></br>
+        <button class="btn btn-primary btn-lg" type="button" onClick={() => navigate('/inventario')}>
+          Inventario
         </button>
+        <br></br>
+        <button class="btn btn-primary btn-lg" type="button" onClick={() => navigate('/clientes')}>
+          Clientes
+        </button>
+        </div>
+        </div>
+        
       </div>
     </div>
   );
