@@ -7,6 +7,7 @@ import Ventas from './components/Ventas';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Clientes from './components/Clientes';
+import Proveedores from './components/Proveedores';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/inventario" element={<PrivateRoute element={Inventario} />} />
         <Route path="/ventas" element={<PrivateRoute element={Ventas} />} />
         <Route path="/clientes" element={<PrivateRoute element={Clientes} />} />
+        <Route path="/proveedores" element={<PrivateRoute element={Proveedores} />} />
       </Routes>
     </Router>
   );

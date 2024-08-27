@@ -33,6 +33,10 @@ function Home() {
         <button className="btn btn-primary btn-lg" type="button" onClick={() => navigate('/clientes')}>
           Clientes
         </button>
+        <br></br>
+        <button className="btn btn-primary btn-lg" type="button" onClick={() => navigate('/proveedores')}>
+          Proveedores
+        </button>
         </div>
         </div>
         

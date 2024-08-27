@@ -11,58 +11,58 @@ function Clientes() {
     // fetch inicial de la tabla de clientes
     useEffect(() => {
       // Obtener la lista de clientes cuando el componente se monta
-      const fetchClientes = async () => {
-          try {
-              const response = await axios.get('http://localhost:8000/api/ventas/clientes/', {
-                  headers: {
-                      'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                  }
-              });
-              setClientes(response.data);
-          } catch (error) {
-              console.error('Error fetching clientes', error);
-          }
-      };
+        const fetchClientes = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/api/ventas/clientes/', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+                    }
+                });
+                setClientes(response.data);
+            } catch (error) {
+                console.error('Error fetching clientes', error);
+            }
+        };
 
-      fetchClientes();
+        fetchClientes();
   }, []); // El array vacío [] significa que esto se ejecuta solo una vez cuando el componente se monta
 
   // post para agregar cliente
-  const handleSubmit = async (e) => {
-      e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-      const newCliente = {
-          nombre,
-          direccion,
-          telefono
-      };
+    const newCliente = {
+        nombre,
+        direccion,
+        telefono
+    };
 
-      try {
-          const response = await axios.post('http://localhost:8000/api/ventas/clientes/', newCliente, {
-              headers: {
-                  'Content-Type': 'application/json',
-                  'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-              }
-          });
-          setClientes([...clientes, response.data]); // Agregar el nuevo cliente a la lista existente
-          setNombre('');
-          setDireccion('');
-          setTelefono('');
-      } catch (error) {
-          console.error('Error creating cliente', error);
-      }
-  };
+    try {
+        const response = await axios.post('http://localhost:8000/api/ventas/clientes/', newCliente, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            }
+        });
+        setClientes([...clientes, response.data]); // Agregar el nuevo cliente a la lista existente
+        setNombre('');
+        setDireccion('');
+        setTelefono('');
+    } catch (error) {
+        console.error('Error creating cliente', error);
+    }
+};
 
   // Filtrado de clientes
-  const filteredClientes = clientes.filter(cliente =>
+    const filteredClientes = clientes.filter(cliente =>
     cliente.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cliente.direccion.toLowerCase().includes(searchTerm.toLowerCase()) ||
     cliente.telefono.toString().includes(searchTerm)
-  );
+);
 
 
     return (
-      <div>
+    <div>
         <h2>Registrar Cliente</h2>
         <form onSubmit={handleSubmit}>
             <div>
@@ -124,7 +124,7 @@ function Clientes() {
                     ))}
                 </tbody>
             </table>
-      </div>
+    </div>
     );
 }
 
