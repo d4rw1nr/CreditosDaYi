@@ -125,10 +125,10 @@ const handleChange = (e) => {
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link" href="/inventario">Inventario</a>
+                <a class="nav-link" href="/ventas">Ventas</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/ventas">Ventas</a>
+                <a class="nav-link" href="/inventario">Inventario</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link disabled" aria-disabled="true" href="/clientes">Clientes</a>
