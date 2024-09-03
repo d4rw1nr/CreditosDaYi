@@ -142,125 +142,125 @@ const handleChange = (e) => {
     </nav>
     
     <br></br>
-    <div>
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title">Registrar Cliente</h2>
-                <br></br>
-                <form onSubmit={handleSubmit}>
-                    <div style={{ marginBottom: '20px'}}>
-                        <label style={{ marginRight: '10px', marginLeft: '20px' }}> Nombre: </label>
-                        <input
-                            type="text"
-                            value={nombre}
-                            onChange={(e) => setNombre(e.target.value)}
-                            required
-                        />
+        <div>
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Registrar Cliente</h2>
+                    <br></br>
+                    <form onSubmit={handleSubmit}>
+                        <div style={{ marginBottom: '20px'}}>
+                            <label style={{ marginRight: '10px', marginLeft: '20px' }}> Nombre: </label>
+                            <input
+                                type="text"
+                                value={nombre}
+                                onChange={(e) => setNombre(e.target.value)}
+                                required
+                            />
 
-                        <label style={{ marginRight: '10px', marginLeft: '20px' }}>Direcci&oacute;n:</label>
-                        <input
-                            type="text"
-                            value={direccion}
-                            onChange={(e) => setDireccion(e.target.value)}
-                            required
-                        />
+                            <label style={{ marginRight: '10px', marginLeft: '20px' }}>Direcci&oacute;n:</label>
+                            <input
+                                type="text"
+                                value={direccion}
+                                onChange={(e) => setDireccion(e.target.value)}
+                                required
+                            />
 
-                        <label style={{ marginRight: '10px', marginLeft: '20px' }}>Tel&eacute;fono:</label>
-                        <input
-                            type="integer"
-                            value={telefono}
-                            onChange={(e) => setTelefono(e.target.value)}
-                            required
-                        />
+                            <label style={{ marginRight: '10px', marginLeft: '20px' }}>Tel&eacute;fono:</label>
+                            <input
+                                type="integer"
+                                value={telefono}
+                                onChange={(e) => setTelefono(e.target.value)}
+                                required
+                            />
 
-                        <button type="submit" style={{ marginLeft: '20px' }}>Crear Cliente</button>
-                    </div>
-                </form>
+                            <button type="submit" style={{ marginLeft: '20px' }}>Crear Cliente</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="card-body">
-                <h2 class="card-title">Buscar Cliente</h2>
-                    <input style={{width: '700px'}}
-                        type="text"
-                        placeholder="Buscar por nombre, dirección o teléfono"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el estado de búsqueda
-                    />
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Buscar Cliente</h2>
+                        <input style={{width: '700px'}}
+                            type="text"
+                            placeholder="Buscar por nombre, dirección o teléfono"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)} // Actualiza el estado de búsqueda
+                        />
+                </div>
             </div>
-        </div>
 
-        <div class="card border border-0">
-            <div class="card-body">
-                <h2 class="card-title">Lista de Clientes</h2>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Dirección</th>
-                                <th>Teléfono</th>
-                                <th>Editar</th>
-                                <th>Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredClientes.map((cliente) => (
-                                <tr key={cliente.id}>
-                                    <td>{cliente.id}</td>
-                                    <td>
-                                        {editClienteId === cliente.id ? (
-                                            <input
-                                                type="text"
-                                                name="nombre"
-                                                value={editData.nombre}
-                                                onChange={handleChange}
-                                            />
-                                        ) : (cliente.nombre)}
-                                    </td>
-                                    <td>
-                                        {editClienteId === cliente.id ? (
-                                            <input
-                                                type="text"
-                                                name="direccion"
-                                                value={editData.direccion}
-                                                onChange={handleChange}
-                                            />
-                                        ) : (
-                                            cliente.direccion
-                                        )}
-                                    </td>
-                                    <td>
-                                        {editClienteId === cliente.id ? (
-                                            <input
-                                                type="text"
-                                                name="telefono"
-                                                value={editData.telefono}
-                                                onChange={handleChange}
-                                            />
-                                        ) : (
-                                            cliente.telefono
-                                        )}
-                                    </td>
-                                    <td>
-                                        {editClienteId === cliente.id ? (
-                                            <button onClick={() => handleSaveClick(cliente.id)}>Confirmar</button>
-                                        ) : (
-                                            <button onClick={() => handleEditClick(cliente)}>Editar</button>
-                                        )}
-                                    </td>
-                                    <td>
-                                        <button onClick={() => handleDeleteClick(cliente.id)}>Eliminar</button>
-                                    </td>
+            <div class="card border border-0">
+                <div class="card-body">
+                    <h2 class="card-title">Lista de Clientes</h2>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Dirección</th>
+                                    <th>Teléfono</th>
+                                    <th>Editar</th>
+                                    <th>Eliminar</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {filteredClientes.map((cliente) => (
+                                    <tr key={cliente.id}>
+                                        <td>{cliente.id}</td>
+                                        <td>
+                                            {editClienteId === cliente.id ? (
+                                                <input
+                                                    type="text"
+                                                    name="nombre"
+                                                    value={editData.nombre}
+                                                    onChange={handleChange}
+                                                />
+                                            ) : (cliente.nombre)}
+                                        </td>
+                                        <td>
+                                            {editClienteId === cliente.id ? (
+                                                <input
+                                                    type="text"
+                                                    name="direccion"
+                                                    value={editData.direccion}
+                                                    onChange={handleChange}
+                                                />
+                                            ) : (
+                                                cliente.direccion
+                                            )}
+                                        </td>
+                                        <td>
+                                            {editClienteId === cliente.id ? (
+                                                <input
+                                                    type="integer"
+                                                    name="telefono"
+                                                    value={editData.telefono}
+                                                    onChange={handleChange}
+                                                />
+                                            ) : (
+                                                cliente.telefono
+                                            )}
+                                        </td>
+                                        <td>
+                                            {editClienteId === cliente.id ? (
+                                                <button onClick={() => handleSaveClick(cliente.id)}>Confirmar</button>
+                                            ) : (
+                                                <button onClick={() => handleEditClick(cliente)}>Editar</button>
+                                            )}
+                                        </td>
+                                        <td>
+                                            <button onClick={() => handleDeleteClick(cliente.id)}>Eliminar</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     );
 }
 
