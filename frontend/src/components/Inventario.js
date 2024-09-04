@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import ProveedorModal from './ProveedorModal';  // Asegúrate de que la ruta sea correcta
+import ProveedorModal from './ProveedorModal';
 
 function Inventario() {
   const [nombre, setNombre] = useState('');
   const [marca, setMarca] = useState('');
   const [detalle, setDetalle] = useState('');
-  const [precio, setPrecio] = useState([]);
-  const [cantidad, setCantidad] = useState([]);
+  const [precio, setPrecio] = useState('');
+  const [cantidad, setCantidad] = useState('');
   const [id_proveedor, setIdProveedor] = useState(null);
   const [proveedorNombre, setProveedorNombre] = useState('');
   const [proveedores, setProveedores] = useState([]);
   const [productos, setProductos] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [editProductoId, setEditProductoId] = useState(null);
-  const [editData, setEditData] = useState({ nombre: '', marca: '', detalle: '', precio: '', cantidad: '', proveedor: '' });
+  const [editData, setEditData] = useState({ nombre: '', marca: '', detalle: '', precio: '', cantidad: '', proveedor_id: '' });
   const [showProveedorModal, setShowProveedorModal] = useState(false);
 
+  // Fetch de proveedores
   useEffect(() => {
     const fetchProveedores = async () => {
       try {
@@ -33,6 +34,7 @@ function Inventario() {
     fetchProveedores();
   }, []);
 
+  // Fetch de productos
   useEffect(() => {
     const fetchProductos = async () => {
       try {
@@ -49,12 +51,14 @@ function Inventario() {
     fetchProductos();
   }, []);
 
+  // Al seleccionar un proveedor
   const handleProveedorSelect = (id, nombre) => {
     setIdProveedor(id);
     setProveedorNombre(nombre);
     setShowProveedorModal(false);
   };
 
+  // Al crear un nuevo producto
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -62,14 +66,12 @@ function Inventario() {
       nombre,
       marca,
       detalle,
-      precio: parseInt(precio),
+      precio: parseFloat(precio),
       cantidad: parseInt(cantidad, 10),
-      proveedor: id_proveedor
+      proveedor_id: id_proveedor
     };
 
     try {
-      console.log(newProducto);
-
       const response = await axios.post('http://localhost:8000/api/inventario/productos/', newProducto, {
         headers: {
           'Content-Type': 'application/json',
@@ -77,6 +79,7 @@ function Inventario() {
         }
       });
       setProductos([...productos, response.data]);
+      // Limpiar los campos
       setNombre('');
       setMarca('');
       setDetalle('');
@@ -85,10 +88,11 @@ function Inventario() {
       setIdProveedor(null);
       setProveedorNombre('');
     } catch (error) {
-      console.error('Error creating producto', error);
+      console.error('Error creating producto', error.response?.data || error);  // Verifica el error exacto
     }
   };
 
+  // Al editar un producto
   const handleEditClick = (producto) => {
     setEditProductoId(producto.id);
     setEditData({
@@ -97,13 +101,19 @@ function Inventario() {
       detalle: producto.detalle,
       precio: producto.precio,
       cantidad: producto.cantidad,
-      id_proveedor: producto.id_proveedor,
+      proveedor_id: producto.proveedor.id  // Almacena el ID del proveedor
     });
   };
 
+  // Al guardar los cambios del producto editado
   const handleSaveClick = async (id) => {
+    const updatedProducto = {
+      ...editData,
+      proveedor_id: editData.proveedor_id  // Usar el ID del proveedor al actualizar
+    };
+
     try {
-      const response = await axios.put(`http://localhost:8000/api/inventario/productos/${id}/`, editData, {
+      const response = await axios.put(`http://localhost:8000/api/inventario/productos/${id}/`, updatedProducto, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -143,10 +153,7 @@ function Inventario() {
   const filteredProductos = productos.filter(producto =>
     producto.nombre.toLowerCase().includes(searchTerm.toLowerCase()) ||
     producto.marca.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    producto.detalle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    producto.precio.toString().includes(searchTerm) ||
-    producto.cantidad.toString().includes(searchTerm) ||
-    producto.proveedorNombre.toString().includes(searchTerm)
+    producto.detalle.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -268,6 +275,8 @@ function Inventario() {
                   <th>Precio</th>
                   <th>Cantidad</th>
                   <th>Proveedor</th>
+                  <th>Editar</th>
+                  <th>Eliminar</th>
                 </tr>
               </thead>
               <tbody>
